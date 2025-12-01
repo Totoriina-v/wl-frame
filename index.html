@@ -711,17 +711,13 @@
 
       const decisionEl = document.getElementById('decision');
       if (score >= 60) {
-        decisionEl.textContent = 'Candidat RÉUSSI la whitelist règlement (note ≥ 60%).';
+        decisionEl.textContent = 'Candidat RÉUSSI le questionnaire règlement et lore (note ≥ 60%).';
         decisionEl.className = 'success';
       } else {
-        decisionEl.textContent = 'Candidat ÉCHOUÉ à la whitelist règlement (note < 60%).';
+        decisionEl.textContent = 'Candidat ÉCHOUÉ le questionnaire règlement et lore (note < 60%).';
         decisionEl.className = 'fail';
       }
     });
   </script>
-<!-- Static App Form Collection Script -->
-<script src="https://static.app/js/static-forms.js" type="text/javascript"></script>
-
-<script src="https://static.app/js/static.js" type="text/javascript"></script>
 </body>
 </html>
