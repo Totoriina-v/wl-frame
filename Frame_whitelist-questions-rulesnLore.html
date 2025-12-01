@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Questionnaire Whitelist FRAME – Règlement - Lore</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 10px 20px;
+      line-height: 1.5;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .question {
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0;
+    }
+    .answer-ref {
+      font-size: 0.9em;
+      color: #555;
+      margin: 4px 0 6px 0;
+    }
+    .result-select {
+      padding: 3px 6px;
+      font-size: 0.9em;
+    }
+    #resultBox {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+    #resultBox span {
+      font-weight: bold;
+    }
+    .success {
+      color: #35A835;
+    }
+    .fail {
+      color: #C02323;
+    }
+    .note {
+      font-size: 1.1em;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    /* Titres en orange coucher de soleil */
+    h1, h2 {
+      color: #FF8C42;
+    }
+
+    /* Couleur des numéros et questions */
+    .question p strong {
+      color: #FF8C42;
+    }
+
+    /* Encadré des questions avec légère teinte orangée */
+    .question {
+      border-left: 4px solid #FF8C42;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Séparateur visuel pour le début de la section LORE */
+    .lore-separator {
+      border-top: 4px double #2A6FDB;
+      margin: 30px 0 20px 0;
+    }
+
+    /* Titre de section LORE en bleu royal */
+    .lore-title {
+      color: #2A6FDB;
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    /* Couleur bleue pour les numéros des questions de la section Lore */
+    .lore-block .question p strong {
+      color: #2A6FDB;
+    }
+
+    /* Bordure bleue sur la gauche pour les questions de Lore */
+    .lore-block .question {
+      border-left: 4px solid #2A6FDB;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Layout menu latéral + contenu */
+    .staff-layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .staff-sidebar {
+      width: 220px;
+      position: sticky;
+      top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+      background: #f3f6ff;
+      font-size: 0.95em;
+    }
+
+    .staff-sidebar h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+      color: #2A6FDB;
+      font-weight: bold;
+    }
+
+    .staff-sidebar a {
+      display: block;
+      text-decoration: none;
+      padding: 6px 8px;
+      margin-bottom: 5px;
+      color: #333;
+      border-radius: 4px;
+    }
+
+    .staff-sidebar a:hover {
+      background: #dfe7ff;
+    }
+
+    .staff-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="staff-layout">
+
+  <!-- MENU LATÉRAL STAFF -->
+  <aside class="staff-sidebar">
+    <h3>Navigation</h3>
+    <a href="#section-top">Haut de page</a>
+    <a href="#section-general">Questions générales & mentalité</a>
+    <a href="#section-illegal">Questions illégal</a>
+    <a href="#section-lore">Lore</a>
+    <a href="#" onclick="location.reload(); return false;">🔄 Refresh (nouveau candidat)</a>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="staff-content">
+
+  <h1 id="section-top">Whitelist FRAME – Questionnaire</h1>
+  <h2 id="section-general">Aide pour le recrutement (suggestion: 6 à 8 questions au choix)</h2>
+
+  <p><strong>Instructions pour le staff :</strong></p>
+  <ul>
+    <li>Choisissez <strong>6 à 8 questions</strong> dans la liste ci-dessous. (à la fin de chaque catégorie, vous trouverez deux espaces prévus pour poser vos propres questions si vous le voulez. Les réponses que vous y inscrirez seront automatiquement prises en compte dans la note finale)</li>
+    <li>Q1 à Q5 questions générales, Q6 à Q28 questions sur l'illégal, <a href="#section-lore">Q29 à Q39 questions sur le Lore.</a></li>
+    <li>Posez-les au candidat en vocal.</li>
+    <li>Pour chaque question utilisée, sélectionnez <em>Bonne réponse</em> ou <em>Mauvaise réponse</em>.</li>
+    <li>Laissez <em>Non posée</em> pour les autres questions.</li>
+    <li>Cliquez sur <strong>Calculer la note</strong>.</li>
+    <li>Réussite si <strong>&ge; 60%</strong>, sinon refus ou au jugement selon sa note, sa menta et ses réponses aux mises en situation.</li>
+  </ul>
+
+  <form id="qcmForm">
+
+    <!-- 1 -->
+    <div class="question">
+      <p><strong>Q1.</strong> Cite une zone pouvant entraîner mort RP en cas d’abus.</p>
+      <p class="answer-ref">Réponse attendue : <em>Poste de police, hôpital, gouvernement, prison, zone militaire, aéroport (au moins une de ces zones).</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 2 -->
+    <div class="question">
+      <p><strong>Q2.</strong> Dans quel contexte tu peux MP un staff ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Aucun (pas de pub, pas de spam, pas de MP staff).</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 3 -->
+    <div class="question">
+      <p><strong>Q3.</strong> Quelle est la mentalité générale prônée par le serveur ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Une mentalité théâtrale, cohérente et respectueuse du lore RP.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 4 -->
+    <div class="question">
+      <p><strong>Q4.</strong> Donner un exemple de comportement cohérent avec une mentalité théâtrale.</p>
+      <p class="answer-ref">Réponse attendue : <em>Jouer ses émotions et réagir de façon crédible en scène (peur, stress, respect, tensions), jouer son personnage dans toutes les situations, ne pas refuser de scène.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 5 -->
+    <div class="question">
+      <p><strong>Q5.</strong> Donner un exemple de comportement incohérent avec l’esprit du serveur.</p>
+      <p class="answer-ref">Réponse attendue : <em>Win RP absolument, courir partout sans raison, chercher des conflits sans justification, ou ignorer le lore.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+    <h2 id="section-illegal">Section : Illégal</h2>
+
+    <!-- 6 -->
+    <div class="question">
+      <p><strong>Q6.</strong> Quand tu fais une action illégale importante, qu’est-ce que tu dois obligatoirement faire ?</p>
+      <p class="answer-ref">Réponse attendue : <em>La revendiquer.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 7 -->
+    <div class="question">
+      <p><strong>Q7.</strong> As-tu le droit de faire un convoi pendant une action illégale ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Non, interdit.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 8 -->
+    <div class="question">
+      <p><strong>Q8.</strong> Quel pouvoir a un lead sur ses membres ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Droit de vie ou de mort.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 9 -->
+    <div class="question">
+      <p><strong>Q9.</strong> Qu’est-ce qu’un braquage minute et est-ce autorisé ou interdit ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Un braquage improvisé en 30 sec sans préparation RP → interdit car pas immersif.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 10 -->
+    <div class="question">
+      <p><strong>Q10.</strong> Un set attaque une organisation : c’est autorisé ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Oui, mais “à leurs risques et périls”, les organisations sont supérieures.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 11 -->
+    <div class="question">
+      <p><strong>Q11.</strong> Délai minimum avant des représailles (Revenge RP) ?</p>
+      <p class="answer-ref">Réponse attendue : <em>24h.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 12 -->
+    <div class="question">
+      <p><strong>Q12.</strong> Peux-tu décider seul de jouer une balance ou un ripoux ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Non, uniquement avec autorisation staff.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 13 -->
+    <div class="question">
+      <p><strong>Q13.</strong> Comment stocker une arme lourde (pompe, ak, m16) ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Dans un sac, un coffre, ou en mains (pas juste en inventaire invisible).</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 14 -->
+    <div class="question">
+      <p><strong>Q14.</strong> Qui peut tirer lors d'un drive-by ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Seulement les passagers, pas le conducteur.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 15 -->
+    <div class="question">
+      <p><strong>Q15.</strong> Le groupe visé doit faire quoi avant de riposter à un drive-by ou walk-by ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Il doit jouer la fuite avant de riposter.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 16 -->
+    <div class="question">
+      <p><strong>Q16.</strong> Free Loot – En conflit, qu’as-tu le droit de loot ?</p>
+      <p class="answer-ref">Réponse attendue : <em>1 arme OU 50% de l’inventaire.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 17 -->
+    <div class="question">
+      <p><strong>Q17.</strong> Avec un policier otage, qu'est-ce que tu peux lui prendre ?</p>
+      <p class="answer-ref">Réponse attendue : <em>1 arme de poing seulement.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 18 -->
+    <div class="question">
+      <p><strong>Q18.</strong> Peux-tu stocker la majorité du matos illégal dans des véhicules ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Non, interdit.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 19 -->
+    <div class="question">
+      <p><strong>Q19.</strong> Avant de pouvoir braquer ou détruire une entreprise tenue par des joueurs, que dois-tu faire ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Ouvrir un ticket et obtenir l'approbation du staff (ticket obligatoire).</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 20 -->
+    <div class="question">
+      <p><strong>Q20.</strong> Pour racketter une entreprise, est-ce que tu dois faire un ticket avant ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Pas besoin de ticket.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 21 -->
+    <div class="question">
+      <p><strong>Q21.</strong> Quel est le pourcentage maximum autorisé du racket à prendre à l'entreprise ?</p>
+      <p class="answer-ref">Réponse attendue : <em>25% des bénéfices hebdomadaires.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 22 -->
+    <div class="question">
+      <p><strong>Q22.</strong> Interdiction de racket/braquage quand ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Pendant un événement légal.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 23 -->
+    <div class="question">
+      <p><strong>Q23.</strong> Vente de drogues en véhicule – quelle est la règle ?</p>
+      <p class="answer-ref">Réponse attendue : <em>Interdit de vendre en restant à côté du véhicule, vente à pied obligatoire.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 24 -->
+    <div class="question">
+      <p><strong>Q24.</strong> Vente de drogues en moto, quelle est la règle ?</p>
+      <p class="answer-ref">Réponse attendue : <em>C'est interdit.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 25 -->
+    <div class="question">
+      <p><strong>Q25.</strong> Combien peut-on faire de Supérettes par groupe / semaine ?</p>
+      <p class="answer-ref">Réponse attendue : <em>3.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 26 -->
+    <div class="question">
+      <p><strong>Q26.</strong> Combien peut-on faire d'ATM par jour / membre ?</p>
+      <p class="answer-ref">Réponse attendue : <em>1.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 27 -->
+    <div class="question">
+      <p><strong>Q27.</strong> Combien peut-on faire de Bijouteries par semaine / groupe ?</p>
+      <p class="answer-ref">Réponse attendue : <em>1.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+
+    <!-- 28 -->
+    <div class="question">
+      <p><strong>Q28.</strong> Combien peut-on faire de Fleeca par semaine / groupe ?</p>
+      <p class="answer-ref">Réponse attendue : <em>1.</em></p>
+      <select class="result-select">
+        <option value="na">Non posée</option>
+        <option value="good">Bonne réponse</option>
+        <option value="bad">Mauvaise réponse</option>
+      </select>
+    </div>
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+
+    <!-- SÉPARATION SECTION LORE -->
+    <div class="lore-separator"></div>
+    <div class="lore-title" id="section-lore">Section : Lore, Monarchie & Histoire du Royaume</div>
+
+    <div class="lore-block">
+
+      <!-- 29 -->
+      <div class="question">
+        <p><strong>Q29.</strong> Quel type de régime politique dirige San Andreas aujourd’hui ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Une monarchie.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 30 -->
+      <div class="question">
+        <p><strong>Q30.</strong> Qui est devenu le nouveau souverain en 2025 ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Son Altesse Leonardo Ier.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 31 -->
+      <div class="question">
+        <p><strong>Q31.</strong> Dans quelles circonstances Leandro Ier est-il mort ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Officiellement d’un arrêt cardiaque (mais rumeurs de complot / empoisonnement / trahison).</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 32 -->
+      <div class="question">
+        <p><strong>Q32.</strong> Qu’est-ce que l’Azuris ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Un minerai instable.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 33 -->
+      <div class="question">
+        <p><strong>Q33.</strong> Quel événement aurait libéré le gaz Nx-A ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Le séisme de 2022.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 34 -->
+      <div class="question">
+        <p><strong>Q34.</strong> Qu’est-ce que le gaz Nx-A ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Un gaz toxique qui a contaminé près de 80 % du territoire.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 35 -->
+      <div class="question">
+        <p><strong>Q35.</strong> Quels éléments de la vie ont été rendus dangereux ou impossibles par le Nx-A ?</p>
+        <p class="answer-ref">Réponse attendue : <em>L’air est devenu irrespirable, l’eau empoisonnée, des villes abandonnées.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 36 -->
+      <div class="question">
+        <p><strong>Q36.</strong> Qu’est-ce que le District Zéro ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Une zone d’exclusion et de non droit entourée d'une muraille créée en 2024 par le Roi Leandro Ier pour isoler les régions les plus contaminées après la libération du gaz Nx-A.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 37 -->
+      <div class="question">
+        <p><strong>Q37.</strong> Pourquoi le District Zéro a-t-il été créé ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Pour isoler les zones les plus contaminées et les populations les plus démunies.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+      <!-- 38 -->
+      <div class="question">
+        <p><strong>Q38.</strong> Où se situent la plupart des zones contaminées ?</p>
+        <p class="answer-ref">Réponse attendue : <em>Presque toutes dans le nord, sauf une zone située au Sud.</em></p>
+        <select class="result-select">
+          <option value="na">Non posée</option>
+          <option value="good">Bonne réponse</option>
+          <option value="bad">Mauvaise réponse</option>
+        </select>
+      </div>
+
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+
+<!-- Question Libre du Staff -->
+<div class="question">
+  <p><strong>QX.</strong> Question libre à poser vous-même</p>
+  <p class="answer-ref"><em>Aucune réponse attendue – question personnalisée.</em></p>
+
+  <select class="result-select">
+    <option value="na">Non posée</option>
+    <option value="good">Bonne réponse</option>
+    <option value="bad">Mauvaise réponse</option>
+  </select>
+</div>
+
+    </div>
+
+    <button id="calcBtn">Calculer la note</button>
+  </form>
+
+  <div id="resultBox">
+    <p><span>Questions posées :</span> <span id="askedCount">0</span></p>
+    <p><span>Bonnes réponses :</span> <span id="goodCount">0</span></p>
+    <p class="note">Note : <span id="score">0</span>%</p>
+    <p id="decision"></p>
+  </div>
+
+  </div> <!-- fin staff-content -->
+
+</div> <!-- fin staff-layout -->
+
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      const selects = document.querySelectorAll('.result-select');
+      let asked = 0;
+      let good = 0;
+
+      selects.forEach(sel => {
+        if (sel.value === 'good' || sel.value === 'bad') {
+          asked++;
+          if (sel.value === 'good') good++;
+        }
+      });
+
+      document.getElementById('askedCount').textContent = asked;
+      document.getElementById('goodCount').textContent = good;
+
+      if (asked === 0) {
+        document.getElementById('score').textContent = '0';
+        document.getElementById('decision').textContent = 'Aucune question posée – impossible de calculer une note.';
+        document.getElementById('decision').className = 'fail';
+        return;
+      }
+
+      const score = Math.round((good / asked) * 100);
+      document.getElementById('score').textContent = score.toString();
+
+      const decisionEl = document.getElementById('decision');
+      if (score >= 60) {
+        decisionEl.textContent = 'Candidat RÉUSSI la whitelist règlement (note ≥ 60%).';
+        decisionEl.className = 'success';
+      } else {
+        decisionEl.textContent = 'Candidat ÉCHOUÉ à la whitelist règlement (note < 60%).';
+        decisionEl.className = 'fail';
+      }
+    });
+  </script>
+<!-- Static App Form Collection Script -->
+<script src="https://static.app/js/static-forms.js" type="text/javascript"></script>
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>
